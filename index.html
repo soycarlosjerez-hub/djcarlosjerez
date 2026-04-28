@@ -17,9 +17,9 @@
     --text: #e8e8f0;
     --muted: #5a5a72;
   }
- 
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
- 
+
   body {
     background: var(--black);
     color: var(--text);
@@ -27,7 +27,7 @@
     overflow-x: hidden;
     cursor: none;
   }
- 
+
   /* CUSTOM CURSOR */
   .cursor {
     width: 12px; height: 12px;
@@ -49,7 +49,7 @@
     transition: transform 0.15s, width 0.2s, height 0.2s;
     mix-blend-mode: difference;
   }
- 
+
   /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0;
@@ -87,7 +87,7 @@
     font-weight: 700 !important;
     color: var(--black);
   }
- 
+
   /* HERO */
   .hero {
     height: 100vh;
@@ -143,7 +143,7 @@
     border-radius: 50%;
   }
   @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
- 
+
   /* Waveform bars */
   .waveform {
     position: absolute;
@@ -166,7 +166,7 @@
     0%, 100% { height: 8px; opacity: 0.3; }
     50% { height: 50px; opacity: 1; }
   }
- 
+
   .hero-content { position: relative; z-index: 2; max-width: 600px; }
   .hero-tag {
     font-family: 'Space Mono', monospace;
@@ -240,7 +240,7 @@
     clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
   }
   .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
- 
+
   /* SCROLL TICKER */
   .ticker {
     background: var(--accent);
@@ -260,7 +260,7 @@
     color: var(--black);
   }
   .ticker .dot { color: rgba(0,0,0,0.4); }
- 
+
   /* SECTION BASE */
   section { padding: 7rem 3rem; }
   .section-label {
@@ -287,7 +287,7 @@
     margin-bottom: 3rem;
   }
   h2.section-title em { font-style: normal; color: var(--accent); }
- 
+
   /* ABOUT */
   .about { background: var(--deep); }
   .about-grid {
@@ -367,7 +367,7 @@
     transition: border-color 0.2s, color 0.2s;
   }
   .genre-tag:hover, .genre-tag.active { border-color: var(--accent); color: var(--accent); }
- 
+
   /* RELEASES */
   .releases { background: var(--black); }
   .releases-inner { max-width: 1200px; margin: 0 auto; }
@@ -445,7 +445,7 @@
     transition: opacity 0.2s;
   }
   .release-card:hover .release-play { opacity: 1; }
- 
+
   /* SHOP */
   .shop { background: var(--surface); }
   .shop-inner { max-width: 1200px; margin: 0 auto; }
@@ -550,7 +550,7 @@
     transition: transform 0.2s;
   }
   .add-cart:hover { transform: scale(1.15); }
- 
+
   /* EVENTS */
   .events { background: var(--black); }
   .events-inner { max-width: 1000px; margin: 0 auto; }
@@ -609,7 +609,7 @@
     white-space: nowrap;
   }
   .event-status.sold { border-color: var(--muted); color: var(--muted); }
- 
+
   /* PLAYER */
   .player-bar {
     position: fixed;
@@ -714,7 +714,7 @@
     background: var(--accent);
     width: 70%;
   }
- 
+
   /* FOOTER */
   footer {
     background: var(--deep);
@@ -762,7 +762,7 @@
     transition: color 0.2s;
   }
   .footer-col a:hover { color: var(--text); }
- 
+
   /* ANNOTATIONS (PARA LA PROPUESTA) */
   .anno {
     position: absolute;
@@ -785,7 +785,7 @@
     right: 100%; top: 50%;
     transform: translateY(-50%);
   }
- 
+
   /* PAGE LABEL */
   .page-label {
     position: fixed;
@@ -800,13 +800,13 @@
     z-index: 50;
     pointer-events: none;
   }
- 
+
   /* SECTION DIVIDER */
   .divider {
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--border) 20%, var(--border) 80%, transparent);
   }
- 
+
   @media (max-width: 900px) {
     .about-grid { grid-template-columns: 1fr; }
     .shop-grid { grid-template-columns: repeat(2, 1fr); }
@@ -819,11 +819,11 @@
 </style>
 </head>
 <body>
- 
+
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 <div class="page-label">DJ Carlos Jerez — Propuesta Web 2026</div>
- 
+
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">DJ <span>Carlos</span> Jerez</a>
@@ -835,18 +835,18 @@
     <li><a href="#" class="nav-cta">Tienda</a></li>
   </ul>
 </nav>
- 
+
 <!-- HERO -->
 <section class="hero" style="padding:0 3rem 5rem; position:relative;">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
- 
+
   <div class="hero-visual">
     <div class="vinyl"></div>
   </div>
- 
+
   <div class="waveform" id="waveform"></div>
- 
+
   <div class="hero-content">
     <p class="hero-tag">Santiago, Dominican Republic</p>
     <h1>Carlos<br><em>Jerez</em></h1>
@@ -856,10 +856,10 @@
       <a href="#" class="btn-ghost">Ver Tienda →</a>
     </div>
   </div>
- 
+
   <div class="anno" style="top:30%; right:calc(8% + 440px);">Foto del artista aquí</div>
 </section>
- 
+
 <!-- TICKER -->
 <div class="ticker">
   <div class="ticker-inner">
@@ -880,7 +880,7 @@
     <span>DJ Carlos Jerez</span><span class="dot">●</span>
   </div>
 </div>
- 
+
 <!-- ABOUT -->
 <section class="about">
   <div class="about-grid">
@@ -889,36 +889,37 @@
         <span class="dj-silhouette">🎧</span>
       </div>
       <div class="about-img-accent">
-        <strong>5+</strong>
+        <strong>10+</strong>
         <span>Años en<br>escena</span>
       </div>
     </div>
     <div class="about-text">
-      <p class="section-label">Artista</p>
-      <h2 class="section-title">El <em>Sonido</em><br>del Norte</h2>
-      <p>DJ Carlos Jerez fusiona la energía cruda del Tech House con la profundidad del Deep y Afro House, creando sets que mueven tanto el cuerpo como el alma. Con base en Santiago, su sonido trasciende fronteras.</p>
-      <p>Ha tocado en escenarios como Summer Fest y su música está disponible globalmente en SoundCloud. Su misión: llevar el sonido dominicano al mundo.</p>
+      <p class="section-label">Artista · DJ · Productor</p>
+      <h2 class="section-title">Tu Fiesta<br>Se <em>Recuerda</em></h2>
+      <p>Juan Carlos Jerez — conocido en las cabinas como <strong style="color:var(--text)">DJ Carlos Jerez</strong> — es DJ y productor originario de Santiago, República Dominicana. Con años de experiencia en la escena electrónica del país, ha construido un estilo propio que mezcla la energía del Tech House con el alma del Deep y el Afro House.</p>
+      <p>Sus producciones suenan en <strong style="color:var(--text)">Spotify, SoundCloud y YouTube</strong>, incluyendo remixes, mashups y tracks originales que demuestran que el talento dominicano va mucho más allá. Con más de una década en las cabinas, su experiencia garantiza que cada set sea una experiencia única — si buscas que tu evento sea diferente, memorable y con una energía que la gente no olvide, llegaste al lugar correcto.</p>
+      <p style="color:var(--accent); font-weight:700; font-size:1rem; letter-spacing:1px;">✦ Disponible para fiestas privadas, bodas, corporativos, rooftops y eventos.</p>
       <div class="genre-tags">
         <span class="genre-tag active">Tech House</span>
         <span class="genre-tag">Deep House</span>
         <span class="genre-tag">Afro House</span>
         <span class="genre-tag">Melodic Techno</span>
-        <span class="genre-tag">EDM</span>
+        <span class="genre-tag">Remixes</span>
       </div>
-      <a href="#" class="btn-primary">Booking & Contacto</a>
+      <a href="#" class="btn-primary">✉ Contrátame para tu evento</a>
     </div>
   </div>
 </section>
- 
+
 <div class="divider"></div>
- 
+
 <!-- RELEASES -->
 <section class="releases">
   <div class="releases-inner">
     <p class="section-label">Música</p>
     <h2 class="section-title">Últimas <em>Releases</em></h2>
     <div class="releases-grid">
- 
+
       <div class="release-card">
         <p class="release-type">Single</p>
         <p class="release-name">Signal Override</p>
@@ -933,7 +934,7 @@
           src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/djcarlosjerez/01-signal-override-original-mix-1&color=%23e8ff00&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false">
         </iframe>
       </div>
- 
+
       <div class="release-card">
         <p class="release-type">Single</p>
         <p class="release-name">Pattern Collapse</p>
@@ -948,7 +949,7 @@
           src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/djcarlosjerez/02-pattern-collapse-original-mix-2&color=%23e8ff00&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false">
         </iframe>
       </div>
- 
+
       <div class="release-card">
         <p class="release-type">Single</p>
         <p class="release-name">Endless Loop</p>
@@ -963,13 +964,13 @@
           src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/djcarlosjerez/03-endless-loop-original-mix-3&color=%23e8ff00&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false">
         </iframe>
       </div>
- 
+
     </div>
   </div>
 </section>
- 
+
 <div class="divider"></div>
- 
+
 <!-- SHOP -->
 <section class="shop">
   <div class="shop-inner">
@@ -1036,9 +1037,9 @@
     </div>
   </div>
 </section>
- 
+
 <div class="divider"></div>
- 
+
 <!-- EVENTS -->
 <section class="events">
   <div class="events-inner">
@@ -1078,7 +1079,7 @@
     </div>
   </div>
 </section>
- 
+
 <!-- PLAYER -->
 <div class="player-bar">
   <div class="player-track">
@@ -1104,7 +1105,7 @@
     <div class="vol-bar"><div class="vol-fill"></div></div>
   </div>
 </div>
- 
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
@@ -1147,7 +1148,7 @@
     </div>
   </div>
 </footer>
- 
+
 <script>
   // Cursor
   const cursor = document.getElementById('cursor');
@@ -1164,7 +1165,7 @@
     requestAnimationFrame(animRing);
   }
   animRing();
- 
+
   // Waveform bars
   const wf = document.getElementById('waveform');
   for (let i = 0; i < 28; i++) {
@@ -1175,7 +1176,7 @@
     b.style.height = (10 + Math.random() * 30) + 'px';
     wf.appendChild(b);
   }
- 
+
   // Filter buttons
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -1183,7 +1184,7 @@
       btn.classList.add('active');
     });
   });
- 
+
   // Genre tags
   document.querySelectorAll('.genre-tag').forEach(tag => {
     tag.addEventListener('click', () => tag.classList.toggle('active'));
@@ -1191,4 +1192,3 @@
 </script>
 </body>
 </html>
- 
