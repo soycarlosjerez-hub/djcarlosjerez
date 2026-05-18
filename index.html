@@ -4,1229 +4,1085 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DJ Carlos Jerez — Propuesta Web</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
-  :root {
-    --black: #050507;
-    --deep: #0a0a0f;
-    --surface: #111118;
-    --border: #1e1e2e;
-    --accent: #e8ff00;
-    --accent2: #ff2d6b;
-    --accent3: #00e5ff;
-    --text: #e8e8f0;
-    --muted: #5a5a72;
+
+:root{
+  --black:#050507;
+  --deep:#0d0d12;
+  --surface:#16161d;
+  --border:#2a2a35;
+
+  /* NUEVOS COLORES */
+  --accent:#ff1e1e;
+  --accent2:#ffffff;
+  --accent3:#ff5a5a;
+
+  --text:#ffffff;
+  --muted:#9b9ba7;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:var(--black);
+  color:var(--text);
+  font-family:'Rajdhani',sans-serif;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* CURSOR */
+
+.cursor{
+  width:12px;
+  height:12px;
+  background:var(--accent);
+  border-radius:50%;
+  position:fixed;
+  top:0;
+  left:0;
+  pointer-events:none;
+  z-index:9999;
+  mix-blend-mode:difference;
+}
+
+.cursor-ring{
+  width:36px;
+  height:36px;
+  border:1px solid var(--accent);
+  border-radius:50%;
+  position:fixed;
+  top:0;
+  left:0;
+  pointer-events:none;
+  z-index:9998;
+  mix-blend-mode:difference;
+}
+
+/* NAV */
+
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:100;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:1.3rem 3rem;
+  background:linear-gradient(to bottom, rgba(0,0,0,0.95), transparent);
+  backdrop-filter:blur(12px);
+}
+
+.nav-logo{
+  text-decoration:none;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.7rem;
+  letter-spacing:4px;
+  color:var(--accent);
+}
+
+.nav-logo span{
+  color:#fff;
+}
+
+.nav-links{
+  display:flex;
+  gap:2rem;
+  list-style:none;
+}
+
+.nav-links a{
+  color:var(--muted);
+  text-decoration:none;
+  font-family:'Space Mono',monospace;
+  font-size:.7rem;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  transition:.3s;
+}
+
+.nav-links a:hover{
+  color:var(--accent);
+}
+
+.nav-cta{
+  background:var(--accent);
+  color:#fff !important;
+  padding:.6rem 1.2rem;
+  border-radius:4px;
+}
+
+/* HERO */
+
+.hero{
+  height:100vh;
+  position:relative;
+  display:flex;
+  align-items:flex-end;
+  padding:0 3rem 5rem;
+  overflow:hidden;
+}
+
+.hero-bg{
+  position:absolute;
+  inset:0;
+  background:
+  radial-gradient(ellipse 60% 60% at 70% 40%, rgba(255,30,30,0.10) 0%, transparent 70%),
+  radial-gradient(ellipse 40% 50% at 20% 70%, rgba(255,255,255,0.05) 0%, transparent 60%),
+  linear-gradient(160deg, #0d0d12 0%, #050507 100%);
+}
+
+.hero-grid{
+  position:absolute;
+  inset:0;
+  background-image:
+  linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size:60px 60px;
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:650px;
+}
+
+.hero-tag{
+  font-family:'Space Mono',monospace;
+  font-size:.65rem;
+  letter-spacing:5px;
+  color:var(--accent);
+  margin-bottom:1rem;
+  text-transform:uppercase;
+}
+
+.hero h1{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(5rem,10vw,9rem);
+  line-height:.9;
+  letter-spacing:2px;
+}
+
+.hero h1 em{
+  font-style:normal;
+  color:var(--accent);
+  text-shadow:0 0 40px rgba(255,30,30,.5);
+}
+
+.hero-sub{
+  margin-top:1rem;
+  color:var(--muted);
+  letter-spacing:5px;
+  text-transform:uppercase;
+  margin-bottom:2rem;
+}
+
+.hero-btns{
+  display:flex;
+  gap:1rem;
+  flex-wrap:wrap;
+}
+
+.btn-primary{
+  background:var(--accent);
+  color:#fff;
+  padding:1rem 2rem;
+  text-decoration:none;
+  font-family:'Space Mono',monospace;
+  text-transform:uppercase;
+  letter-spacing:3px;
+  font-size:.7rem;
+  transition:.3s;
+}
+
+.btn-primary:hover{
+  transform:translateY(-3px);
+  box-shadow:0 8px 30px rgba(255,30,30,.4);
+}
+
+.btn-ghost{
+  border:1px solid var(--border);
+  color:#fff;
+  padding:1rem 2rem;
+  text-decoration:none;
+  font-family:'Space Mono',monospace;
+  text-transform:uppercase;
+  letter-spacing:3px;
+  font-size:.7rem;
+}
+
+.hero-visual{
+  position:absolute;
+  right:8%;
+  top:50%;
+  transform:translateY(-50%);
+  width:420px;
+  height:420px;
+}
+
+.vinyl{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  background:
+  radial-gradient(circle at center,
+  #2b0d0d 0%,
+  #111 30%,
+  #3b1111 31%,
+  #111 50%,
+  #2a0d0d 51%,
+  #3b1111 70%,
+  #0a0a0a 100%);
+  border:2px solid #3a3a3a;
+  box-shadow:
+  0 0 80px rgba(255,30,30,0.25),
+  inset 0 0 40px rgba(0,0,0,0.8);
+  animation:spin 8s linear infinite;
+  position:relative;
+}
+
+.vinyl::before{
+  content:'';
+  position:absolute;
+  inset:40%;
+  background:radial-gradient(circle,
+  #ff1e1e 0%,
+  #ff4d4d 40%,
+  #ffffff 100%);
+  border-radius:50%;
+}
+
+.vinyl::after{
+  content:'';
+  position:absolute;
+  inset:48%;
+  background:#000;
+  border-radius:50%;
+}
+
+@keyframes spin{
+  from{
+    transform:rotate(0deg);
+  }
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+/* WAVEFORM */
+
+.waveform{
+  position:absolute;
+  bottom:7rem;
+  left:3rem;
+  display:flex;
+  align-items:flex-end;
+  gap:4px;
+  height:60px;
+}
+
+.bar{
+  width:4px;
+  background:var(--accent);
+  border-radius:10px;
+  animation:wave 1s ease-in-out infinite;
+}
+
+.bar:nth-child(2n){
+  background:#fff;
+}
+
+@keyframes wave{
+  0%,100%{
+    height:10px;
+    opacity:.4;
+  }
+  50%{
+    height:55px;
+    opacity:1;
+  }
+}
+
+/* SECTIONS */
+
+section{
+  padding:7rem 3rem;
+}
+
+.section-label{
+  color:var(--accent);
+  font-family:'Space Mono',monospace;
+  letter-spacing:4px;
+  font-size:.7rem;
+  margin-bottom:1rem;
+  text-transform:uppercase;
+}
+
+.section-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(3rem,6vw,5rem);
+  line-height:1;
+  margin-bottom:3rem;
+}
+
+.section-title em{
+  color:var(--accent);
+  font-style:normal;
+}
+
+/* ABOUT */
+
+.about{
+  background:var(--deep);
+}
+
+.about-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5rem;
+  align-items:center;
+  max-width:1200px;
+  margin:auto;
+}
+
+.about-img img{
+  width:100%;
+  border:1px solid var(--border);
+}
+
+.about-text p{
+  color:#ccc;
+  line-height:1.8;
+  margin-bottom:1.5rem;
+}
+
+.genre-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.7rem;
+  margin-top:2rem;
+}
+
+.genre-tag{
+  border:1px solid var(--border);
+  padding:.5rem 1rem;
+  font-size:.7rem;
+  color:#fff;
+  text-transform:uppercase;
+}
+
+/* YOUTUBE */
+
+.video-box{
+  max-width:1000px;
+  margin:auto;
+}
+
+.video-frame{
+  position:relative;
+  padding-bottom:56.25%;
+  height:0;
+  overflow:hidden;
+  border:1px solid var(--border);
+}
+
+.video-frame iframe{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+}
+
+/* RELEASES */
+
+.releases-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:2rem;
+}
+
+.release-card{
+  background:var(--deep);
+  padding:1.5rem;
+  border:1px solid var(--border);
+}
+
+.release-name{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.8rem;
+  margin:.4rem 0;
+}
+
+.release-type{
+  color:var(--accent);
+  font-family:'Space Mono',monospace;
+  font-size:.7rem;
+  text-transform:uppercase;
+}
+
+.release-meta{
+  color:var(--muted);
+  margin-bottom:1rem;
+}
+
+/* GALLERY */
+
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+.gallery-grid img{
+  width:100%;
+  aspect-ratio:1;
+  object-fit:cover;
+  transition:.4s;
+}
+
+.gallery-grid img:hover{
+  transform:scale(1.05);
+}
+
+/* EVENTS */
+
+.event-row{
+  display:grid;
+  grid-template-columns:100px 1fr auto;
+  gap:2rem;
+  align-items:center;
+  border-bottom:1px solid var(--border);
+  padding:2rem 0;
+}
+
+.event-date strong{
+  font-size:3rem;
+  color:var(--accent);
+  display:block;
+  font-family:'Bebas Neue',sans-serif;
+}
+
+.event-info h3{
+  font-size:1.5rem;
+  text-transform:uppercase;
+}
+
+.event-info p{
+  color:var(--muted);
+}
+
+.event-status{
+  border:1px solid var(--accent);
+  padding:.6rem 1rem;
+  text-transform:uppercase;
+  font-size:.7rem;
+}
+
+/* PLAYER */
+
+.player-bar{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:rgba(0,0,0,.95);
+  border-top:1px solid var(--border);
+  padding:1rem 3rem;
+  display:flex;
+  align-items:center;
+  gap:2rem;
+  z-index:100;
+}
+
+.progress-bar{
+  height:4px;
+  width:300px;
+  background:#222;
+}
+
+.progress-fill{
+  height:100%;
+  width:35%;
+  background:linear-gradient(90deg,#ff1e1e,#ffffff);
+}
+
+/* FOOTER */
+
+footer{
+  background:var(--deep);
+  padding:5rem 3rem 8rem;
+  border-top:1px solid var(--border);
+}
+
+.footer-inner{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  gap:3rem;
+  max-width:1200px;
+  margin:auto;
+}
+
+.footer-col h4{
+  color:var(--accent);
+  margin-bottom:1rem;
+}
+
+.footer-col ul{
+  list-style:none;
+}
+
+.footer-col li{
+  margin-bottom:.7rem;
+}
+
+.footer-col a{
+  color:#aaa;
+  text-decoration:none;
+}
+
+.footer-col a:hover{
+  color:#fff;
+}
+
+.socials{
+  display:flex;
+  gap:1rem;
+  margin-top:1.5rem;
+}
+
+.social-btn{
+  width:40px;
+  height:40px;
+  border:1px solid var(--border);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-decoration:none;
+  color:#fff;
+  transition:.3s;
+}
+
+.social-btn:hover{
+  border-color:var(--accent);
+  background:rgba(255,30,30,.1);
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+  .hero{
+    padding:0 1.5rem 5rem;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: var(--black);
-    color: var(--text);
-    font-family: 'Rajdhani', sans-serif;
-    overflow-x: hidden;
-    cursor: none;
+  .hero-visual{
+    opacity:.15;
+    width:300px;
+    height:300px;
   }
 
-  /* CUSTOM CURSOR */
-  .cursor {
-    width: 12px; height: 12px;
-    background: var(--accent);
-    border-radius: 50%;
-    position: fixed; top: 0; left: 0;
-    pointer-events: none;
-    z-index: 9999;
-    transition: transform 0.1s;
-    mix-blend-mode: difference;
-  }
-  .cursor-ring {
-    width: 36px; height: 36px;
-    border: 1px solid var(--accent);
-    border-radius: 50%;
-    position: fixed; top: 0; left: 0;
-    pointer-events: none;
-    z-index: 9998;
-    transition: transform 0.15s, width 0.2s, height 0.2s;
-    mix-blend-mode: difference;
+  .about-grid{
+    grid-template-columns:1fr;
   }
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 1.4rem 3rem;
-    background: linear-gradient(to bottom, rgba(5,5,7,0.95), transparent);
-    backdrop-filter: blur(0px);
-  }
-  .nav-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.6rem;
-    letter-spacing: 4px;
-    color: var(--accent);
-    text-decoration: none;
-  }
-  .nav-logo span { color: var(--text); }
-  .nav-links {
-    display: flex; gap: 2.5rem; list-style: none;
-  }
-  .nav-links a {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--accent); }
-  .nav-cta {
-    background: var(--accent);
-    color: var(--black) !important;
-    padding: 0.5rem 1.4rem;
-    font-weight: 700 !important;
-    color: var(--black);
+  .releases-grid{
+    grid-template-columns:1fr;
   }
 
-  /* HERO */
-  .hero {
-    height: 100vh;
-    position: relative;
-    display: flex; align-items: flex-end;
-    padding: 0 3rem 5rem;
-    overflow: hidden;
-  }
-  .hero-bg {
-    position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse 60% 60% at 70% 40%, rgba(232,255,0,0.07) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 50% at 20% 70%, rgba(255,45,107,0.06) 0%, transparent 60%),
-      linear-gradient(160deg, #0a0a0f 0%, #050507 100%);
-  }
-  .hero-grid {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(232,255,0,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(232,255,0,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-  }
-  .hero-visual {
-    position: absolute;
-    right: 8%;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 420px; height: 420px;
-  }
-  .vinyl {
-    width: 100%; height: 100%;
-    border-radius: 50%;
-    background:
-      radial-gradient(circle at center, #1a1a2e 0%, #0a0a0f 30%, #1a1a2e 31%, #111 50%, #0a0a0f 51%, #1a1a2e 70%, #0a0a0f 100%);
-    border: 2px solid #222;
-    box-shadow: 0 0 80px rgba(232,255,0,0.12), inset 0 0 40px rgba(0,0,0,0.8);
-    animation: spin 8s linear infinite;
-    position: relative;
-  }
-  .vinyl::before {
-    content: '';
-    position: absolute;
-    inset: 40%;
-    background: radial-gradient(circle, var(--accent) 0%, #b8cc00 40%, #555 100%);
-    border-radius: 50%;
-    box-shadow: 0 0 20px rgba(232,255,0,0.5);
-  }
-  .vinyl::after {
-    content: '';
-    position: absolute;
-    inset: 48%;
-    background: var(--black);
-    border-radius: 50%;
-  }
-  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-  /* Waveform bars */
-  .waveform {
-    position: absolute;
-    bottom: 8rem;
-    left: 3rem;
-    display: flex; align-items: flex-end; gap: 3px;
-    height: 60px;
-  }
-  .bar {
-    width: 3px;
-    background: var(--accent);
-    opacity: 0.6;
-    animation: wave 1.2s ease-in-out infinite;
-    border-radius: 2px;
-  }
-  .bar:nth-child(2n) { background: var(--accent2); animation-delay: 0.2s; }
-  .bar:nth-child(3n) { animation-delay: 0.4s; }
-  .bar:nth-child(4n) { animation-delay: 0.1s; }
-  @keyframes wave {
-    0%, 100% { height: 8px; opacity: 0.3; }
-    50% { height: 50px; opacity: 1; }
+  .gallery-grid{
+    grid-template-columns:1fr;
   }
 
-  .hero-content { position: relative; z-index: 2; max-width: 600px; }
-  .hero-tag {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 5px;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 1.2rem;
-    display: flex; align-items: center; gap: 1rem;
-  }
-  .hero-tag::before {
-    content: '';
-    width: 30px; height: 1px;
-    background: var(--accent);
-    display: inline-block;
-  }
-  .hero h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(5rem, 10vw, 9rem);
-    line-height: 0.9;
-    letter-spacing: 2px;
-    color: var(--text);
-    margin-bottom: 0.2rem;
-  }
-  .hero h1 em {
-    font-style: normal;
-    color: var(--accent);
-    -webkit-text-stroke: 0px;
-    text-shadow: 0 0 40px rgba(232,255,0,0.5);
-  }
-  .hero-sub {
-    font-size: 1.1rem;
-    letter-spacing: 6px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 2.5rem;
-    font-weight: 300;
-  }
-  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
-  .btn-primary {
-    background: var(--accent);
-    color: var(--black);
-    padding: 1rem 2.5rem;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: none;
-    cursor: none;
-    transition: transform 0.2s, box-shadow 0.2s;
-    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
-  }
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(232,255,0,0.3);
-  }
-  .btn-ghost {
-    background: transparent;
-    color: var(--text);
-    padding: 1rem 2.5rem;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: 1px solid var(--border);
-    cursor: none;
-    transition: border-color 0.2s, color 0.2s;
-    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
-  }
-  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-
-  /* SCROLL TICKER */
-  .ticker {
-    background: var(--accent);
-    padding: 0.8rem 0;
-    overflow: hidden;
-  }
-  .ticker-inner {
-    display: flex; gap: 3rem;
-    animation: ticker 20s linear infinite;
-    white-space: nowrap;
-  }
-  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  .ticker span {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.1rem;
-    letter-spacing: 4px;
-    color: var(--black);
-  }
-  .ticker .dot { color: rgba(0,0,0,0.4); }
-
-  /* SECTION BASE */
-  section { padding: 7rem 3rem; }
-  .section-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 5px;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-    display: flex; align-items: center; gap: 1rem;
-  }
-  .section-label::before {
-    content: '';
-    width: 20px; height: 1px;
-    background: var(--accent);
-    display: inline-block;
-  }
-  h2.section-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(3rem, 6vw, 5.5rem);
-    letter-spacing: 2px;
-    line-height: 1;
-    color: var(--text);
-    margin-bottom: 3rem;
-  }
-  h2.section-title em { font-style: normal; color: var(--accent); }
-
-  /* ABOUT */
-  .about { background: var(--deep); }
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  .about-img {
-    position: relative;
-    aspect-ratio: 3/4;
-  }
-  .about-img-frame {
-    width: 100%; height: 100%;
-    background: linear-gradient(135deg, #111 0%, #1a1a2e 100%);
-    border: 1px solid var(--border);
-    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
-    display: flex; align-items: center; justify-content: center;
-    overflow: hidden;
-    position: relative;
-  }
-  .about-img-frame::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 50% 30%, rgba(232,255,0,0.08) 0%, transparent 60%);
-  }
-  .dj-silhouette {
-    font-size: 8rem;
-    opacity: 0.4;
-    filter: grayscale(1);
-  }
-  .about-img-accent {
-    position: absolute;
-    bottom: -1rem; right: -1rem;
-    width: 120px; height: 120px;
-    border: 2px solid var(--accent);
-    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
-    display: flex; align-items: center; justify-content: center;
-    flex-direction: column;
-    background: var(--black);
-  }
-  .about-img-accent strong {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.2rem;
-    color: var(--accent);
-    line-height: 1;
-  }
-  .about-img-accent span {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
-    letter-spacing: 3px;
-    color: var(--muted);
-    text-transform: uppercase;
-  }
-  .about-text p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: rgba(232,232,240,0.7);
-    margin-bottom: 2rem;
-    font-weight: 300;
-  }
-  .genre-tags {
-    display: flex; flex-wrap: wrap; gap: 0.6rem;
-    margin-bottom: 2.5rem;
-  }
-  .genre-tag {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 2px;
-    padding: 0.4rem 1rem;
-    border: 1px solid var(--border);
-    color: var(--muted);
-    text-transform: uppercase;
-    cursor: none;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .genre-tag:hover, .genre-tag.active { border-color: var(--accent); color: var(--accent); }
-
-  /* RELEASES */
-  .releases { background: var(--black); }
-  .releases-inner { max-width: 1200px; margin: 0 auto; }
-  .releases-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5px;
-    background: var(--border);
-    border: 1px solid var(--border);
-  }
-  .release-card {
-    background: var(--deep);
-    padding: 2rem;
-    transition: background 0.3s;
-    position: relative;
-    overflow: hidden;
-    cursor: none;
-  }
-  .release-card:hover { background: var(--surface); }
-  .release-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--accent), transparent);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s;
-  }
-  .release-card:hover::before { transform: scaleX(1); }
-  .release-cover {
-    aspect-ratio: 1;
-    background: linear-gradient(135deg, #111 0%, #0d0d1a 100%);
-    margin-bottom: 1.2rem;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 3rem;
-    border: 1px solid var(--border);
-    position: relative;
-    overflow: hidden;
-  }
-  .release-cover-accent {
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 30% 30%, rgba(232,255,0,0.1) 0%, transparent 60%);
-  }
-  .release-type {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 4px;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 0.4rem;
-  }
-  .release-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.5rem;
-    letter-spacing: 2px;
-    color: var(--text);
-    margin-bottom: 0.3rem;
-  }
-  .release-meta {
-    font-size: 0.85rem;
-    color: var(--muted);
-    font-family: 'Space Mono', monospace;
-  }
-  .release-play {
-    position: absolute;
-    bottom: 2rem; right: 2rem;
-    width: 40px; height: 40px;
-    background: var(--accent);
-    clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.9rem;
-    color: var(--black);
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
-  .release-card:hover .release-play { opacity: 1; }
-
-  /* SHOP */
-  .shop { background: var(--surface); }
-  .shop-inner { max-width: 1200px; margin: 0 auto; }
-  .shop-header {
-    display: flex; justify-content: space-between; align-items: flex-end;
-    margin-bottom: 3rem;
-    flex-wrap: wrap; gap: 1rem;
-  }
-  .shop-filters {
-    display: flex; gap: 0.5rem;
-  }
-  .filter-btn {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 2px;
-    padding: 0.5rem 1.2rem;
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--muted);
-    text-transform: uppercase;
-    cursor: none;
-    transition: all 0.2s;
-  }
-  .filter-btn.active, .filter-btn:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    background: rgba(232,255,0,0.05);
-  }
-  .shop-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--border);
-  }
-  .product-card {
-    background: var(--deep);
-    overflow: hidden;
-    cursor: none;
-    position: relative;
-    transition: background 0.3s;
-  }
-  .product-card:hover { background: var(--surface); }
-  .product-img {
-    aspect-ratio: 1;
-    background: linear-gradient(135deg, #0f0f1a, #1a1a0f);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 4rem;
-    position: relative;
-    overflow: hidden;
-  }
-  .product-img::after {
-    content: 'VER';
-    position: absolute; inset: 0;
-    background: rgba(232,255,0,0.9);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.5rem;
-    letter-spacing: 6px;
-    color: var(--black);
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  .product-card:hover .product-img::after { opacity: 1; }
-  .product-info {
-    padding: 1.2rem;
-    border-top: 1px solid var(--border);
-  }
-  .product-cat {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
-    letter-spacing: 3px;
-    color: var(--muted);
-    text-transform: uppercase;
-    margin-bottom: 0.3rem;
-  }
-  .product-name {
-    font-family: 'Rajdhani', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    letter-spacing: 1px;
-    color: var(--text);
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-  }
-  .product-price-row {
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .product-price {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.9rem;
-    color: var(--accent);
-    font-weight: 700;
-  }
-  .add-cart {
-    width: 28px; height: 28px;
-    background: var(--accent);
-    border: none;
-    color: var(--black);
-    font-size: 0.9rem;
-    cursor: none;
-    clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px));
-    transition: transform 0.2s;
-  }
-  .add-cart:hover { transform: scale(1.15); }
-
-  /* EVENTS */
-  .events { background: var(--black); }
-  .events-inner { max-width: 1000px; margin: 0 auto; }
-  .event-row {
-    display: grid;
-    grid-template-columns: 80px 1fr auto;
-    gap: 2rem;
-    align-items: center;
-    padding: 2rem 0;
-    border-bottom: 1px solid var(--border);
-    transition: background 0.2s;
-    cursor: none;
-  }
-  .event-row:first-child { border-top: 1px solid var(--border); }
-  .event-row:hover { padding-left: 1rem; }
-  .event-date {
-    text-align: center;
-  }
-  .event-date strong {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.5rem;
-    color: var(--accent);
-    line-height: 1;
-    display: block;
-  }
-  .event-date span {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 3px;
-    color: var(--muted);
-    text-transform: uppercase;
-  }
-  .event-info h3 {
-    font-family: 'Rajdhani', sans-serif;
-    font-weight: 700;
-    font-size: 1.3rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--text);
-    margin-bottom: 0.3rem;
-  }
-  .event-info p {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 2px;
-    color: var(--muted);
-  }
-  .event-status {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 3px;
-    padding: 0.4rem 1rem;
-    text-transform: uppercase;
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    white-space: nowrap;
-  }
-  .event-status.sold { border-color: var(--muted); color: var(--muted); }
-
-  /* PLAYER */
-  .player-bar {
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    background: rgba(5,5,7,0.96);
-    backdrop-filter: blur(20px);
-    border-top: 1px solid var(--border);
-    padding: 1rem 3rem;
-    display: flex; align-items: center; gap: 2rem;
-    z-index: 100;
-  }
-  .player-track {
-    display: flex; align-items: center; gap: 1rem;
-    min-width: 200px;
-  }
-  .player-thumb {
-    width: 42px; height: 42px;
-    background: linear-gradient(135deg, #1a1a2e, #0f0f0f);
-    border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.2rem;
-    flex-shrink: 0;
-  }
-  .player-info strong {
-    display: block;
-    font-family: 'Rajdhani', sans-serif;
-    font-weight: 700;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-  .player-info span {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 2px;
-    color: var(--muted);
-  }
-  .player-controls {
-    display: flex; align-items: center; gap: 1.2rem;
-    flex: 1; justify-content: center;
-  }
-  .ctrl-btn {
-    background: none; border: none;
-    color: var(--muted);
-    font-size: 1.1rem;
-    cursor: none;
-    transition: color 0.2s;
-  }
-  .ctrl-btn:hover { color: var(--text); }
-  .ctrl-play {
-    width: 42px; height: 42px;
-    background: var(--accent);
-    border: none;
-    color: var(--black);
-    font-size: 1.2rem;
-    cursor: none;
-    clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
-    transition: transform 0.2s;
-  }
-  .ctrl-play:hover { transform: scale(1.05); }
-  .progress-area {
-    flex: 2; max-width: 400px;
-  }
-  .progress-bar {
-    height: 3px;
-    background: var(--border);
-    position: relative;
-    cursor: none;
-    margin-bottom: 0.3rem;
-  }
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    width: 35%;
-    position: relative;
-  }
-  .progress-fill::after {
-    content: '';
-    position: absolute; right: -4px; top: -3px;
-    width: 9px; height: 9px;
-    background: var(--accent);
-    border-radius: 50%;
-  }
-  .progress-time {
-    display: flex; justify-content: space-between;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
-    color: var(--muted);
-    letter-spacing: 1px;
-  }
-  .volume-area {
-    display: flex; align-items: center; gap: 0.8rem;
-    min-width: 120px;
-  }
-  .vol-icon { color: var(--muted); font-size: 0.9rem; }
-  .vol-bar {
-    flex: 1; height: 3px;
-    background: var(--border);
-  }
-  .vol-fill {
-    height: 100%;
-    background: var(--accent);
-    width: 70%;
+  .footer-inner{
+    grid-template-columns:1fr;
   }
 
-  /* FOOTER */
-  footer {
-    background: var(--deep);
-    padding: 5rem 3rem 6rem;
-    border-top: 1px solid var(--border);
-  }
-  .footer-inner {
-    max-width: 1200px; margin: 0 auto;
-    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 4rem;
-  }
-  .footer-brand .logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2rem; letter-spacing: 4px;
-    color: var(--accent);
-    display: block; margin-bottom: 1rem;
-  }
-  .footer-brand p {
-    font-size: 0.9rem; color: var(--muted);
-    line-height: 1.7; font-weight: 300;
-  }
-  .footer-socials { display: flex; gap: 0.8rem; margin-top: 1.5rem; }
-  .social-btn {
-    width: 38px; height: 38px;
-    border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.85rem; color: var(--muted);
-    text-decoration: none;
-    transition: all 0.2s;
-    clip-path: polygon(0 0, calc(100% - 5px) 0, 100% 5px, 100% 100%, 5px 100%, 0 calc(100% - 5px));
-    cursor: none;
-  }
-  .social-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(232,255,0,0.05); }
-  .footer-col h4 {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem; letter-spacing: 4px;
-    color: var(--accent); text-transform: uppercase;
-    margin-bottom: 1.5rem;
-  }
-  .footer-col ul { list-style: none; }
-  .footer-col li { margin-bottom: 0.8rem; }
-  .footer-col a {
-    font-size: 0.9rem; color: var(--muted);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .footer-col a:hover { color: var(--text); }
-
-  /* ANNOTATIONS (PARA LA PROPUESTA) */
-  .anno {
-    position: absolute;
-    background: rgba(232,255,0,0.9);
-    color: var(--black);
-    font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
-    font-weight: 700;
-    padding: 0.3rem 0.7rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    z-index: 50;
-    pointer-events: none;
-  }
-  .anno::before {
-    content: '';
-    position: absolute;
-    width: 20px; height: 1px;
-    background: var(--black);
-    right: 100%; top: 50%;
-    transform: translateY(-50%);
+  .nav-links{
+    display:none;
   }
 
-  /* PAGE LABEL */
-  .page-label {
-    position: fixed;
-    top: 50%;
-    right: -60px;
-    transform: translateY(-50%) rotate(90deg);
-    font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 6px;
-    color: var(--muted);
-    text-transform: uppercase;
-    z-index: 50;
-    pointer-events: none;
+  .player-bar{
+    display:none;
   }
 
-  /* SECTION DIVIDER */
-  .divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border) 20%, var(--border) 80%, transparent);
-  }
+}
 
-  @media (max-width: 900px) {
-    .about-grid { grid-template-columns: 1fr; }
-    .shop-grid { grid-template-columns: repeat(2, 1fr); }
-    .releases-grid { grid-template-columns: 1fr; }
-    .footer-inner { grid-template-columns: 1fr 1fr; }
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { display: none; }
-    section { padding: 5rem 1.5rem; }
-  }
 </style>
 </head>
+
 <body>
 
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
-<div class="page-label">DJ Carlos Jerez — Propuesta Web 2026</div>
 
 <!-- NAV -->
+
 <nav>
-  <a class="nav-logo" href="#">DJ <span>Carlos</span> Jerez</a>
-  <ul class="nav-links">
-    <li><a href="#">Inicio</a></li>
-    <li><a href="#">Releases</a></li>
-    <li><a href="#">Eventos</a></li>
-    <li><a href="#">Mix</a></li>
-    <li><a href="#" class="nav-cta">Tienda</a></li>
-  </ul>
+
+<a href="#" class="nav-logo">
+DJ <span>Carlos</span> Jerez
+</a>
+
+<ul class="nav-links">
+<li><a href="#">Inicio</a></li>
+<li><a href="#">Música</a></li>
+<li><a href="#">Eventos</a></li>
+<li><a href="#">Galería</a></li>
+<li><a href="#" class="nav-cta">Booking</a></li>
+</ul>
+
 </nav>
 
 <!-- HERO -->
-<section class="hero" style="padding:0 3rem 5rem; position:relative;">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
 
-  <div class="hero-visual">
-    <div class="vinyl"></div>
-  </div>
+<section class="hero">
 
-  <div class="waveform" id="waveform"></div>
+<div class="hero-bg"></div>
+<div class="hero-grid"></div>
 
-  <div class="hero-content">
-    <p class="hero-tag">Santiago, Dominican Republic</p>
-    <h1>Carlos<br><em>Jerez</em></h1>
-    <p class="hero-sub">Tech House · Deep House · Afro House</p>
-    <div class="hero-btns">
-      <a href="#" class="btn-primary">▶ Escuchar Mix</a>
-      <a href="#" class="btn-ghost">Ver Tienda →</a>
-    </div>
-  </div>
-
-  <div class="anno" style="top:30%; right:calc(8% + 440px);">Foto del artista aquí</div>
-</section>
-
-<!-- TICKER -->
-<div class="ticker">
-  <div class="ticker-inner">
-    <span>Tech House</span><span class="dot">●</span>
-    <span>Deep House</span><span class="dot">●</span>
-    <span>Afro House</span><span class="dot">●</span>
-    <span>Melodic Techno</span><span class="dot">●</span>
-    <span>Summer Fest 2024</span><span class="dot">●</span>
-    <span>SoundCloud</span><span class="dot">●</span>
-    <span>DJ Carlos Jerez</span><span class="dot">●</span>
-    <!-- duplicado para loop -->
-    <span>Tech House</span><span class="dot">●</span>
-    <span>Deep House</span><span class="dot">●</span>
-    <span>Afro House</span><span class="dot">●</span>
-    <span>Melodic Techno</span><span class="dot">●</span>
-    <span>Summer Fest 2024</span><span class="dot">●</span>
-    <span>SoundCloud</span><span class="dot">●</span>
-    <span>DJ Carlos Jerez</span><span class="dot">●</span>
-  </div>
+<div class="hero-visual">
+<div class="vinyl"></div>
 </div>
+
+<div class="waveform" id="waveform"></div>
+
+<div class="hero-content">
+
+<p class="hero-tag">
+Santiago · República Dominicana
+</p>
+
+<h1>
+Carlos<br>
+<em>Jerez</em>
+</h1>
+
+<p class="hero-sub">
+Tech House · Afro House · Deep House
+</p>
+
+<div class="hero-btns">
+
+<a href="https://www.youtube.com/watch?v=Zs6tZXE9GkY"
+target="_blank"
+class="btn-primary">
+▶ Ver Último Mix
+</a>
+
+<a href="https://soundcloud.com/djcarlosjerez"
+target="_blank"
+class="btn-ghost">
+SoundCloud →
+</a>
+
+</div>
+
+</div>
+
+</section>
 
 <!-- ABOUT -->
+
 <section class="about">
-  <div class="about-grid">
-    <div class="about-img">
-      <div class="about-img-frame">
-        <img src="https://raw.githubusercontent.com/soycarlosjerez-hub/djcarlosjerez/main/principal.jpg" alt="DJ Carlos Jerez" style="width:100%; height:100%; object-fit:cover; display:block;">
-      </div>
-      <div class="about-img-accent">
-        <strong>10+</strong>
-        <span>Años en<br>escena</span>
-      </div>
-    </div>
-    <div class="about-text">
-      <p class="section-label">Artista · DJ · Productor</p>
-      <h2 class="section-title">Tu Fiesta<br>Se <em>Recuerda</em></h2>
-      <p>Juan Carlos Jerez — conocido en las cabinas como <strong style="color:var(--text)">DJ Carlos Jerez</strong> — es DJ y productor originario de Santiago, República Dominicana. Con años de experiencia en la escena electrónica del país, ha construido un estilo propio que mezcla la energía del Tech House con el alma del Deep y el Afro House.</p>
-      <p>Sus producciones suenan en <strong style="color:var(--text)">Spotify, SoundCloud y YouTube</strong>, incluyendo remixes, mashups y tracks originales que demuestran que el talento dominicano va mucho más allá. Con más de una década en las cabinas, su experiencia garantiza que cada set sea una experiencia única — si buscas que tu evento sea diferente, memorable y con una energía que la gente no olvide, llegaste al lugar correcto.</p>
-      <p style="color:var(--accent); font-weight:700; font-size:1rem; letter-spacing:1px;">✦ Disponible para fiestas privadas, bodas, corporativos, rooftops y eventos.</p>
-      <div class="genre-tags">
-        <span class="genre-tag active">Tech House</span>
-        <span class="genre-tag">Deep House</span>
-        <span class="genre-tag">Afro House</span>
-        <span class="genre-tag">Melodic Techno</span>
-        <span class="genre-tag">Remixes</span>
-      </div>
-      <a href="#" class="btn-primary">✉ Contrátame para tu evento</a>
-    </div>
-  </div>
+
+<div class="about-grid">
+
+<div class="about-img">
+<img src="https://raw.githubusercontent.com/soycarlosjerez-hub/djcarlosjerez/main/principal.jpg">
+</div>
+
+<div class="about-text">
+
+<p class="section-label">
+Artista · DJ · Productor
+</p>
+
+<h2 class="section-title">
+La Música Se <em>Siente</em>
+</h2>
+
+<p>
+DJ Carlos Jerez es un DJ y productor dominicano especializado en Tech House, Deep House y Afro House.
+</p>
+
+<p>
+Con más de 10 años de experiencia en eventos, clubes y festivales, crea experiencias musicales modernas con energía internacional.
+</p>
+
+<div class="genre-tags">
+<span class="genre-tag">Tech House</span>
+<span class="genre-tag">Afro House</span>
+<span class="genre-tag">Deep House</span>
+<span class="genre-tag">Melodic Techno</span>
+</div>
+
+</div>
+
+</div>
+
 </section>
 
-<div class="divider"></div>
+<!-- YOUTUBE -->
 
-  
-  
-  <!-- VIDEO YOUTUBE -->
-<div class="release-card">
-  <p class="release-type">YouTube</p>
-  <p class="release-name">DJ Carlos Jerez</p>
-  <p class="release-meta" style="margin-bottom:1rem;">
-    Último Video
-  </p>
+<section>
 
-  <div style="
-    position:relative;
-    padding-bottom:56.25%;
-    height:0;
-    overflow:hidden;
-    border-radius:6px;
-    border:1px solid var(--border);
-  ">
-    <iframe
-      src="https://www.youtube.com/embed/Zs6tZXE9GkY"
-      title="DJ Carlos Jerez YouTube Video"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen
-      style="
-        position:absolute;
-        top:0;
-        left:0;
-        width:100%;
-        height:100%;
-      ">
-    </iframe>
-  </div>
+<div class="video-box">
 
-  <div style="margin-top:1rem;">
-    <a
-      href="https://www.youtube.com/watch?v=Zs6tZXE9GkY"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="btn-primary"
-      style="display:inline-block;"
-    >
-      ▶ Ver en YouTube
-    </a>
-  </div>
+<p class="section-label">
+Último Video
+</p>
+
+<h2 class="section-title">
+YouTube <em>Live Mix</em>
+</h2>
+
+<div class="video-frame">
+
+<iframe
+src="https://www.youtube.com/embed/Zs6tZXE9GkY"
+frameborder="0"
+allowfullscreen>
+</iframe>
+
 </div>
-<div class="divider"></div>
+
+</div>
+
+</section>
 
 <!-- RELEASES -->
+
 <section class="releases">
-  <div class="releases-inner">
-    <p class="section-label">Música</p>
-    <h2 class="section-title">Últimas <em>Releases</em></h2>
-    <div class="releases-grid">
 
-      <div class="release-card">
-        <p class="release-type">Single</p>
-        <p class="release-name">Signal Override</p>
-        <p class="release-meta" style="margin-bottom:1.2rem;">Original Mix</p>
-        <iframe
-          width="100%"
-          height="166"
-          scrolling="no"
-          frameborder="no"
-          allow="autoplay"
-          style="border-radius:4px;"
-          src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/djcarlosjerez/01-signal-override-original-mix-1&color=%23e8ff00&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false">
-        </iframe>
-      </div>
+<p class="section-label">
+Releases
+</p>
 
-      <div class="release-card">
-        <p class="release-type">Single</p>
-        <p class="release-name">Pattern Collapse</p>
-        <p class="release-meta" style="margin-bottom:1.2rem;">Original Mix</p>
-        <iframe
-          width="100%"
-          height="166"
-          scrolling="no"
-          frameborder="no"
-          allow="autoplay"
-          style="border-radius:4px;"
-          src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/djcarlosjerez/02-pattern-collapse-original-mix-2&color=%23e8ff00&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false">
-        </iframe>
-      </div>
+<h2 class="section-title">
+Última <em>Música</em>
+</h2>
 
-      <div class="release-card">
-        <p class="release-type">Single</p>
-        <p class="release-name">Endless Loop</p>
-        <p class="release-meta" style="margin-bottom:1.2rem;">Original Mix</p>
-        <iframe
-          width="100%"
-          height="166"
-          scrolling="no"
-          frameborder="no"
-          allow="autoplay"
-          style="border-radius:4px;"
-          src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/djcarlosjerez/03-endless-loop-original-mix-3&color=%23e8ff00&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false">
-        </iframe>
-      </div>
+<div class="releases-grid">
 
-    </div>
-  </div>
+<div class="release-card">
+
+<p class="release-type">
+Single
+</p>
+
+<p class="release-name">
+Signal Override
+</p>
+
+<p class="release-meta">
+Original Mix
+</p>
+
+<iframe
+width="100%"
+height="166"
+scrolling="no"
+frameborder="no"
+allow="autoplay"
+src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/djcarlosjerez/01-signal-override-original-mix-1">
+</iframe>
+
+</div>
+
+<div class="release-card">
+
+<p class="release-type">
+Single
+</p>
+
+<p class="release-name">
+Pattern Collapse
+</p>
+
+<p class="release-meta">
+Original Mix
+</p>
+
+<iframe
+width="100%"
+height="166"
+scrolling="no"
+frameborder="no"
+allow="autoplay"
+src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/djcarlosjerez/02-pattern-collapse-original-mix-2">
+</iframe>
+
+</div>
+
+<div class="release-card">
+
+<p class="release-type">
+Single
+</p>
+
+<p class="release-name">
+Endless Loop
+</p>
+
+<p class="release-meta">
+Original Mix
+</p>
+
+<iframe
+width="100%"
+height="166"
+scrolling="no"
+frameborder="no"
+allow="autoplay"
+src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/djcarlosjerez/03-endless-loop-original-mix-3">
+</iframe>
+
+</div>
+
+</div>
+
 </section>
 
-  
-<div class="divider"></div>
+<!-- GALLERY -->
 
-<!-- GALERÍA -->
-<section class="shop">
-  <div class="shop-inner">
-    <div class="shop-header">
-      <div>
-        <p class="section-label">Instagram</p>
-        <h2 class="section-title" style="margin-bottom:0;">Últimas <em>Fotos</em></h2>
-      </div>
-      <a href="https://www.instagram.com/djcarlosjerez" target="_blank" class="btn-ghost" style="margin-bottom:0.5rem;">Ver Instagram →</a>
-    </div>
-    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:6px;">
+<section>
 
-      <div style="position:relative; overflow:hidden; aspect-ratio:1; cursor:none;">
-        <img
-          src="https://raw.githubusercontent.com/soycarlosjerez-hub/djcarlosjerez/main/1.jpg"
-          alt="DJ Carlos Jerez"
-          style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.4s;"
-          onmouseover="this.style.transform='scale(1.06)'"
-          onmouseout="this.style.transform='scale(1)'"
-        >
-        <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(232,255,0,0.15), transparent);opacity:0;transition:opacity 0.3s;"
-          onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'"></div>
-      </div>
+<p class="section-label">
+Instagram
+</p>
 
-      <div style="position:relative; overflow:hidden; aspect-ratio:1; cursor:none;">
-        <img
-          src="https://raw.githubusercontent.com/soycarlosjerez-hub/djcarlosjerez/main/2.jpg"
-          alt="DJ Carlos Jerez"
-          style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.4s;"
-          onmouseover="this.style.transform='scale(1.06)'"
-          onmouseout="this.style.transform='scale(1)'"
-        >
-        <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(232,255,0,0.15), transparent);opacity:0;transition:opacity 0.3s;"
-          onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'"></div>
-      </div>
+<h2 class="section-title">
+Últimas <em>Fotos</em>
+</h2>
 
-      <div style="position:relative; overflow:hidden; aspect-ratio:1; cursor:none;">
-        <img
-          src="https://raw.githubusercontent.com/soycarlosjerez-hub/djcarlosjerez/main/3.jpg"
-          alt="DJ Carlos Jerez"
-          style="width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.4s;"
-          onmouseover="this.style.transform='scale(1.06)'"
-          onmouseout="this.style.transform='scale(1)'"
-        >
-        <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(232,255,0,0.15), transparent);opacity:0;transition:opacity 0.3s;"
-          onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'"></div>
-      </div>
+<div class="gallery-grid">
 
-    </div>
-    <div style="text-align:center; margin-top:2rem;">
-      <a href="https://www.instagram.com/djcarlosjerez" target="_blank" class="btn-primary">📷 Seguir en Instagram</a>
-    </div>
-  </div>
+<img src="https://raw.githubusercontent.com/soycarlosjerez-hub/djcarlosjerez/main/1.jpg">
+
+<img src="https://raw.githubusercontent.com/soycarlosjerez-hub/djcarlosjerez/main/2.jpg">
+
+<img src="https://raw.githubusercontent.com/soycarlosjerez-hub/djcarlosjerez/main/3.jpg">
+
+</div>
+
 </section>
-    </div>
-    <div style="text-align:center; margin-top:3rem;">
-<div class="divider"></div>
 
 <!-- EVENTS -->
-<section class="events">
-  <div class="events-inner">
-    <p class="section-label">En Vivo</p>
-    <h2 class="section-title">Próximos <em>Shows</em></h2>
-    <div class="event-row">
-      <div class="event-date"><strong>15</strong><span>Jun</span></div>
-      <div class="event-info">
-        <h3>Summer Fest 2025</h3>
-        <p>Santiago, RD · Escenario Principal · 10:00 PM</p>
-      </div>
-      <span class="event-status">Tickets</span>
-    </div>
-    <div class="event-row">
-      <div class="event-date"><strong>28</strong><span>Jun</span></div>
-      <div class="event-info">
-        <h3>Bolelos Rooftop Night</h3>
-        <p>Bolelos Terrace · Santiago · 9:00 PM</p>
-      </div>
-      <span class="event-status">Entrada Libre</span>
-    </div>
-    <div class="event-row">
-      <div class="event-date"><strong>12</strong><span>Jul</span></div>
-      <div class="event-info">
-        <h3>Tech House Session</h3>
-        <p>Santo Domingo · Venue TBA · 11:00 PM</p>
-      </div>
-      <span class="event-status">Próximamente</span>
-    </div>
-    <div class="event-row">
-      <div class="event-date"><strong>05</strong><span>Ago</span></div>
-      <div class="event-info">
-        <h3>Caribbean Beats Festival</h3>
-        <p>Punta Cana · Open Air · TBA</p>
-      </div>
-      <span class="event-status sold">Agotado</span>
-    </div>
-  </div>
+
+<section>
+
+<p class="section-label">
+Eventos
+</p>
+
+<h2 class="section-title">
+Próximos <em>Shows</em>
+</h2>
+
+<div class="event-row">
+
+<div class="event-date">
+<strong>15</strong>
+<span>Jun</span>
+</div>
+
+<div class="event-info">
+<h3>Summer Fest</h3>
+<p>Santiago · 10:00 PM</p>
+</div>
+
+<div class="event-status">
+Tickets
+</div>
+
+</div>
+
+<div class="event-row">
+
+<div class="event-date">
+<strong>28</strong>
+<span>Jun</span>
+</div>
+
+<div class="event-info">
+<h3>Bolelos Rooftop</h3>
+<p>Santiago · 9:00 PM</p>
+</div>
+
+<div class="event-status">
+VIP
+</div>
+
+</div>
+
 </section>
 
 <!-- PLAYER -->
+
 <div class="player-bar">
-  <div class="player-track">
-    <div class="player-thumb">🎵</div>
-    <div class="player-info">
-      <strong>Deep Ritual</strong>
-      <span>DJ Carlos Jerez · 2025</span>
-    </div>
-  </div>
-  <div class="player-controls">
-    <button class="ctrl-btn">⏮</button>
-    <button class="ctrl-btn">⏪</button>
-    <button class="ctrl-play">▶</button>
-    <button class="ctrl-btn">⏩</button>
-    <button class="ctrl-btn">⏭</button>
-  </div>
-  <div class="progress-area">
-    <div class="progress-bar"><div class="progress-fill"></div></div>
-    <div class="progress-time"><span>2:14</span><span>6:30</span></div>
-  </div>
-  <div class="volume-area">
-    <span class="vol-icon">🔊</span>
-    <div class="vol-bar"><div class="vol-fill"></div></div>
-  </div>
+
+<div>
+<strong>Now Playing</strong><br>
+Deep Ritual
+</div>
+
+<div class="progress-bar">
+<div class="progress-fill"></div>
+</div>
+
 </div>
 
 <!-- FOOTER -->
+
 <footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <span class="logo">DJ Carlos Jerez</span>
-      <p>Tech House · Deep House · Afro House<br>Santiago, República Dominicana.<br>Música global con alma caribeña.</p>
-      <div class="footer-socials">
-        <a href="https://soundcloud.com/djcarlosjerez" class="social-btn" target="_blank">☁</a>
-        <a href="#" class="social-btn">▶</a>
-        <a href="#" class="social-btn">📷</a>
-        <a href="#" class="social-btn">🎵</a>
-      </div>
-    </div>
-    <div class="footer-col">
-      <h4>Artista</h4>
-      <ul>
-        <li><a href="#">Bio</a></li>
-        <li><a href="#">Galería</a></li>
-        <li><a href="#">Prensa</a></li>
-        <li><a href="#">Booking</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Música</h4>
-      <ul>
-        <li><a href="#">Releases</a></li>
-        <li><a href="#">Mixes</a></li>
-        <li><a href="#">SoundCloud</a></li>
-        <li><a href="#">Spotify</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Tienda</h4>
-      <ul>
-        <li><a href="#">Ropa</a></li>
-        <li><a href="#">Accesorios</a></li>
-        <li><a href="#">Digital</a></li>
-        <li><a href="#">Mi Carrito</a></li>
-      </ul>
-    </div>
-  </div>
+
+<div class="footer-inner">
+
+<div>
+
+<h2 style="font-family:'Bebas Neue'; font-size:3rem; color:var(--accent);">
+DJ Carlos Jerez
+</h2>
+
+<p style="margin-top:1rem; color:#aaa;">
+Tech House · Afro House · Deep House
+</p>
+
+<div class="socials">
+
+<a class="social-btn"
+href="https://www.instagram.com/djcarlosjerezrd"
+target="_blank">
+📷
+</a>
+
+<a class="social-btn"
+href="https://soundcloud.com/djcarlosjerez"
+target="_blank">
+☁
+</a>
+
+<a class="social-btn"
+href="https://www.youtube.com/@djcarlosjerezrd"
+target="_blank">
+▶
+</a>
+
+<a class="social-btn"
+href="https://www.tiktok.com/@djcarlosjerezrd"
+target="_blank">
+🎵
+</a>
+
+</div>
+
+</div>
+
+<div class="footer-col">
+
+<h4>
+Navegación
+</h4>
+
+<ul>
+<li><a href="#">Inicio</a></li>
+<li><a href="#">Eventos</a></li>
+<li><a href="#">Mixes</a></li>
+<li><a href="#">Booking</a></li>
+</ul>
+
+</div>
+
+<div class="footer-col">
+
+<h4>
+Contacto
+</h4>
+
+<ul>
+<li><a href="#">Instagram</a></li>
+<li><a href="#">YouTube</a></li>
+<li><a href="#">SoundCloud</a></li>
+<li><a href="#">TikTok</a></li>
+</ul>
+
+</div>
+
+</div>
+
 </footer>
 
 <script>
-  // Cursor
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  let mx = 0, my = 0, rx = 0, ry = 0;
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    cursor.style.transform = `translate(${mx - 6}px, ${my - 6}px)`;
-  });
-  function animRing() {
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
-    ring.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
-    requestAnimationFrame(animRing);
-  }
-  animRing();
 
-  // Waveform bars
-  const wf = document.getElementById('waveform');
-  for (let i = 0; i < 28; i++) {
-    const b = document.createElement('div');
-    b.className = 'bar';
-    b.style.animationDelay = (Math.random() * 1.2) + 's';
-    b.style.animationDuration = (0.6 + Math.random() * 0.8) + 's';
-    b.style.height = (10 + Math.random() * 30) + 'px';
-    wf.appendChild(b);
-  }
+/* CURSOR */
 
-  // Filter buttons
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-    });
-  });
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
 
-  // Genre tags
-  document.querySelectorAll('.genre-tag').forEach(tag => {
-    tag.addEventListener('click', () => tag.classList.toggle('active'));
-  });
+let mx = 0;
+let my = 0;
+let rx = 0;
+let ry = 0;
+
+document.addEventListener('mousemove', e => {
+
+mx = e.clientX;
+my = e.clientY;
+
+cursor.style.transform =
+`translate(${mx - 6}px, ${my - 6}px)`;
+
+});
+
+function animateRing(){
+
+rx += (mx - rx) * 0.12;
+ry += (my - ry) * 0.12;
+
+ring.style.transform =
+`translate(${rx - 18}px, ${ry - 18}px)`;
+
+requestAnimationFrame(animateRing);
+
+}
+
+animateRing();
+
+/* WAVEFORM */
+
+const wf = document.getElementById('waveform');
+
+for(let i = 0; i < 30; i++){
+
+const bar = document.createElement('div');
+
+bar.className = 'bar';
+
+bar.style.height =
+(10 + Math.random() * 45) + 'px';
+
+bar.style.animationDelay =
+(Math.random() * 1) + 's';
+
+wf.appendChild(bar);
+
+}
+
 </script>
+
 </body>
 </html>
